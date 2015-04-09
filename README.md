@@ -19,13 +19,13 @@ A cada turno o jogador pode escolher realizar uma dentre as seguintes ações:
 * Gerar Tropas
 * Atacar (caso possua tropas)
 
-Existem dois tipos de recursos *comida* e *madeira*, que podem ser obtidos através da *coleta de recursos*. A coleta de recursos irá gerar uma distribuição aleatória de quantidade de comida e madeira, assim, cabe ao jogador tomar as melhores decisões baseado em sua atual situação de recursos.
+Existem dois tipos de recursos: *comida* e *madeira*, que podem ser obtidos através da ação *coleta de recursos*. A coleta de recursos irá gerar uma distribuição aleatória de quantidade de comida e madeira, assim, cabe ao jogador tomar as melhores decisões baseado em sua atual situação de recursos.
 
-A *muralha* serve como uma espécie de escudo, ela também possui pontos de vida. Enquanto os pontos de vida da muralha forem superiores à 0, ela irá tomar todo o dano proveniente de ataques. A única maneira de incrementar a quantidade de pontos de vida da muralha é realizando a ação de fortalecê-la. Após a muralha ser totalmente destruída, o jogador precisa esperar alguns poucos turnos para poder reconstruí-la.
+A *muralha* serve como uma espécie de escudo, ela também possui pontos de vida. Enquanto os pontos de vida da muralha forem superiores à 0, ela irá tomar todo o dano proveniente de ataques. A única maneira de incrementar a quantidade de pontos de vida da muralha é realizando a ação de fortalecê-la. Após a muralha ser totalmente destruída, o jogador precisa esperar alguns turnos para poder reconstruí-la.
 
-Para *gerar tropas* serão consumidas unidades do recurso comida, já para fortalecer a muralha serão consumidas unidades do recurso madeira.
+Para *gerar tropas* serão consumidas unidades do recurso *comida*, já para fortalecer a muralha serão consumidas unidades do recurso *madeira*.
 
-Para poder atacar o jogador precisa possuir tropas, essas tropas serão enviadas ao combate para lutar até a morte e causar uma quantidade de dano na muralha ou na vila (caso a muralha esteja destruída) que varia de acordo com a força e a quantidade dos soldados, além, é claro, de um pouco do fator sorte.
+Para poder atacar o jogador atacante precisa possuir tropas, essas tropas serão enviadas ao combate para lutar até a morte e causar uma quantidade de dano na muralha ou na vila (caso a muralha esteja destruída) que varia de acordo com a força e a quantidade dos soldados, além, é claro, de um pouco do fator sorte.
 
 ## Recomendações Organização do Repositório
 
