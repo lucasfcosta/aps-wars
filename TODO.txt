@@ -3,11 +3,11 @@
 Diagramas de atividade:
 Fazer conectar - SON
 
-Fazer Verificação de vencedor - HEN
+Fazer Verificação de vencedor - DONE
 
 Sequencia:
 Iniciar turno - SON
 Render-se - SON
 
-Verificação de vencedor - HEN
-Modificar o iniciar partida - HEN
+Verificação de vencedor - DONE
+Modificar o iniciar partida - DONE
