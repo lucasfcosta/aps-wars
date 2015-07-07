@@ -1,6 +1,6 @@
 package start;
 
-import jogo.AtorJogador;
+import rede.AtorJogador;
 
 public class Start {
 	public static void main(String[] args) {

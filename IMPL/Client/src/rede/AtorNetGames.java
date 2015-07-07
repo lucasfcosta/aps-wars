@@ -1,115 +1,106 @@
 package rede;
 
-import jogo.AtorJogador;
+import jogo.Vila;
 import br.ufsc.inf.leobr.cliente.Jogada;
 import br.ufsc.inf.leobr.cliente.OuvidorProxy;
 import br.ufsc.inf.leobr.cliente.Proxy;
 import br.ufsc.inf.leobr.cliente.exception.NaoConectadoException;
 import br.ufsc.inf.leobr.cliente.exception.NaoJogandoException;
 
-public class AtorRede implements OuvidorProxy {
+public class AtorNetGames implements OuvidorProxy {
 
 	private AtorJogador atorJogador;
 	private Proxy proxy;
-	private boolean isMyTurn = false;
+	private boolean minhaVez = false;
 
-	public AtorRede(AtorJogador atorJogador) {
+	public AtorNetGames(AtorJogador atorJogador) {
 		super();
 		this.atorJogador = atorJogador;
 		proxy = Proxy.getInstance();
 		proxy.addOuvinte(this);
 	}
 
-	/**
-	 * Conecta o jogo ao servidor.
-	 * 
-	 * @param nome
-	 * @param servidor
-	 */
 	public void conectar(String nome, String servidor) {
 		try {
 			proxy.conectar(servidor, nome);
 		} catch (Exception e) {
-			atorJogador.getMainWindow().showDialog(e.getMessage());
+			atorJogador.getInterfaceGrafica().showDialog(e.getMessage());
 			e.printStackTrace();
 		}
 	}
 
 	/**
 	 * Inicia uma partida entre cliente e servidor. Através dessa partida os
-	 * participantes do chat irão trocar mensagens.
+	 * jogadores irão trocar mensagens.
 	 */
 	public void iniciarPartidaRede() {
 		try {
 			proxy.iniciarPartida(2);
 		} catch (NaoConectadoException e) {
-			atorJogador.getMainWindow().showDialog(e.getMessage());
+			atorJogador.getInterfaceGrafica().showDialog(e.getMessage());
 			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public void iniciarNovaPartida(Integer posicao) {
-		isMyTurn = posicao == 1 ? true : false;
-		atorJogador.iniciarPartidaRede(isMyTurn);
+		minhaVez = posicao == 1 ? true : false;
+		atorJogador.iniciarPartidaRede(minhaVez);
 	}
 
-	public void enviarJogada(String mensagem) {
-
-		Mensagem msg = new Mensagem(mensagem);
+	public void enviarEstado(Estado mensagem) {
 		try {
-			proxy.enviaJogada(msg);
-			isMyTurn = false;
+			proxy.enviaJogada(mensagem);
+			minhaVez = false;
 		} catch (NaoJogandoException e) {
-			atorJogador.getMainWindow().showDialog(e.getMessage());
+			atorJogador.getInterfaceGrafica().showDialog(e.getMessage());
 			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public void receberJogada(Jogada jogada) {
-		Mensagem msg = (Mensagem) jogada;
-		atorJogador.receberMensagemRede(msg.getMensagem());
-		isMyTurn = true;
+		Estado estado = (Estado) jogada;
+		atorJogador.receberEstado(estado);
+		minhaVez = true;
 	}
 
 	public void desconectar() {
 		try {
 			proxy.desconectar();
 		} catch (NaoConectadoException e) {
-			atorJogador.getMainWindow().showDialog(e.getMessage());
+			atorJogador.getInterfaceGrafica().showDialog(e.getMessage());
 			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public void finalizarPartidaComErro(String message) {
-		atorJogador.getMainWindow().showDialog(message);
+		atorJogador.getInterfaceGrafica().showDialog(message);
 
 	}
 
 	@Override
 	public void tratarConexaoPerdida() {
-		atorJogador.getMainWindow().showDialog(
+		atorJogador.getInterfaceGrafica().showDialog(
 				"A conexão com o servidor foi perdida!");
 
 	}
 
 	@Override
 	public void tratarPartidaNaoIniciada(String message) {
-		atorJogador.getMainWindow().showDialog(
+		atorJogador.getInterfaceGrafica().showDialog(
 				"Não foi possível iniciar a conversa");
 	}
 
 	@Override
 	public void receberMensagem(String msg) {
 		// TODO Auto-generated method stub
-
 	}
 
 	public String obterNomeAdversario() {
 		String nome = "";
-		if (isMyTurn) {
+		if (minhaVez) {
 			nome = proxy.obterNomeAdversario(2);
 		} else {
 			nome = proxy.obterNomeAdversario(1);
@@ -119,7 +110,7 @@ public class AtorRede implements OuvidorProxy {
 	}
 
 	public boolean ehMinhaVez() {
-		return isMyTurn;
+		return minhaVez;
 	}
 
 }
