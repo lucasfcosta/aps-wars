@@ -2,17 +2,9 @@ package jogo;
 
 public class Jogador {
 	private Vila vila;
+	
 	private String nome;
 	private boolean jogadorLocal;
-	private boolean vencedor;
-	
-	public boolean isVencedor() {
-		return vencedor;
-	}
-
-	public void setVencedor(boolean vencedor) {
-		this.vencedor = vencedor;
-	}
 
 	public boolean isJogadorLocal() {
 		return jogadorLocal;

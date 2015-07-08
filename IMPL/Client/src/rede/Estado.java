@@ -7,11 +7,15 @@ public class Estado implements Jogada {
 
 	private Vila vila1;
 	private Vila vila2;
+	boolean rendeuSe;
+	boolean vencedor;
 	
-	public Estado(Vila vila1, Vila vila2) {
+	public Estado(Vila vila1, Vila vila2, boolean rendeuSe, boolean vencedor) {
 		super();
 		this.vila1 = vila1;
 		this.vila2 = vila2;
+		this.rendeuSe = rendeuSe;
+		this.vencedor = vencedor;
 	}
 
 	public Vila getVila2() {
@@ -28,6 +32,22 @@ public class Estado implements Jogada {
 
 	public Vila getVila1() {
 		return vila1;
+	}
+	
+	public boolean isRendeuSe() {
+		return rendeuSe;
+	}
+
+	public void setRendeuSe(boolean rendeuSe) {
+		this.rendeuSe = rendeuSe;
+	}
+
+	public boolean isVencedor() {
+		return vencedor;
+	}
+
+	public void setVencedor(boolean vencedor) {
+		this.vencedor = vencedor;
 	}
 
 }

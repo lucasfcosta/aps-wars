@@ -7,7 +7,36 @@ import rede.AtorJogador;
 import rede.Estado;
 
 public class InterfaceGrafica extends javax.swing.JFrame {
-	AtorJogador atorJogador;
+	private javax.swing.JButton atacar;
+	private javax.swing.JLabel comidaJogador1;
+	private javax.swing.JLabel comidaJogador2;
+	private javax.swing.JButton fortalecerMuralha;
+	private javax.swing.JButton gerarRecursos;
+	private javax.swing.JButton gerarTropas;
+	private javax.swing.JLabel jLabel1;
+	private javax.swing.JLabel jLabel2;
+	private javax.swing.JLabel jLabel3;
+	private javax.swing.JLabel jLabel4;
+	private javax.swing.JLabel jLabel5;
+	private javax.swing.JLabel jLabel6;
+	private javax.swing.JLabel jLabel7;
+	private javax.swing.JLabel jLabel8;
+	private javax.swing.JMenu jMenu2;
+	private javax.swing.JMenuBar jMenuBar1;
+	private javax.swing.JMenuItem iniciarPartida;
+	private javax.swing.JSeparator jSeparator1;
+	private javax.swing.JLabel madeiraJogador1;
+	private javax.swing.JLabel madeiraJogador2;
+	private javax.swing.JLabel nomeJogador1;
+	private javax.swing.JLabel nomeJogador2;
+	private javax.swing.JButton renderSe;
+	private javax.swing.JLabel soldadosJogador1;
+	private javax.swing.JLabel soldadosJogador2;
+	private javax.swing.JProgressBar vidaMuralha1;
+	private javax.swing.JProgressBar vidaMuralha2;
+	private javax.swing.JProgressBar vidaVila1;
+	private javax.swing.JProgressBar vidaVila2;
+	private AtorJogador atorJogador;
 
 	@SuppressWarnings("unchecked")
 	private void initComponents() {
@@ -42,7 +71,7 @@ public class InterfaceGrafica extends javax.swing.JFrame {
 		jMenu2 = new javax.swing.JMenu();
 		iniciarPartida = new javax.swing.JMenuItem();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 		setTitle("APS Wars");
 		setAlwaysOnTop(true);
 		setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -608,10 +637,20 @@ public class InterfaceGrafica extends javax.swing.JFrame {
 
 		pack();
 		setLocationRelativeTo(null);
-	}// </editor-fold>
+		
+		this.addWindowListener(new java.awt.event.WindowAdapter() {
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		    	exitButtonClicked(windowEvent);
+		    }
+		});
+	}
 
 	private void renderSeActionPerformed(java.awt.event.ActionEvent evt) {
-		atorJogador.renderSe();
+		int result = JOptionPane.showConfirmDialog(null, "Você tem certez de que deseja se render?", "Fechar jogo", JOptionPane.YES_NO_OPTION);
+		if (result == JOptionPane.YES_OPTION) {
+			atorJogador.renderSe();
+		}
 	}
 
 	private void gerarRecursosActionPerformed(java.awt.event.ActionEvent evt) {
@@ -633,42 +672,20 @@ public class InterfaceGrafica extends javax.swing.JFrame {
 	private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {
 		atorJogador.iniciarPartida();
 	}
+	
+	private void exitButtonClicked(java.awt.event.WindowEvent windowEvent) {
+		int result = JOptionPane.showConfirmDialog(null, "Você tem certez de que deseja fechar?", "Fechar jogo", JOptionPane.YES_NO_OPTION);
+		if (result == JOptionPane.YES_OPTION) {
+			atorJogador.desconectar();
+			System.exit(0);
+		}
+	}
 
 	public InterfaceGrafica(AtorJogador atorJogador) {
 		this.atorJogador = atorJogador;
 		initComponents();
 		this.setVisible(true);
 	}
-
-	private javax.swing.JButton atacar;
-	private javax.swing.JLabel comidaJogador1;
-	private javax.swing.JLabel comidaJogador2;
-	private javax.swing.JButton fortalecerMuralha;
-	private javax.swing.JButton gerarRecursos;
-	private javax.swing.JButton gerarTropas;
-	private javax.swing.JLabel jLabel1;
-	private javax.swing.JLabel jLabel2;
-	private javax.swing.JLabel jLabel3;
-	private javax.swing.JLabel jLabel4;
-	private javax.swing.JLabel jLabel5;
-	private javax.swing.JLabel jLabel6;
-	private javax.swing.JLabel jLabel7;
-	private javax.swing.JLabel jLabel8;
-	private javax.swing.JMenu jMenu2;
-	private javax.swing.JMenuBar jMenuBar1;
-	private javax.swing.JMenuItem iniciarPartida;
-	private javax.swing.JSeparator jSeparator1;
-	private javax.swing.JLabel madeiraJogador1;
-	private javax.swing.JLabel madeiraJogador2;
-	private javax.swing.JLabel nomeJogador1;
-	private javax.swing.JLabel nomeJogador2;
-	private javax.swing.JButton renderSe;
-	private javax.swing.JLabel soldadosJogador1;
-	private javax.swing.JLabel soldadosJogador2;
-	private javax.swing.JProgressBar vidaMuralha1;
-	private javax.swing.JProgressBar vidaMuralha2;
-	private javax.swing.JProgressBar vidaVila1;
-	private javax.swing.JProgressBar vidaVila2;
 
 	public void showDialog(String msg) {
 		JOptionPane.showMessageDialog(this, msg);
@@ -717,6 +734,8 @@ public class InterfaceGrafica extends javax.swing.JFrame {
 	
 	public void desabilitarIniciarPartida() {
 		iniciarPartida.setEnabled(false);
+		jMenuBar1.setEnabled(false);
+		jMenu2.setEnabled(false);
 	}
 	
 	public void atualizarNomeJogador1(String str, boolean eu) {

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import org.apache.log4j.chainsaw.Main;
 
+import rede.AtorJogador;
 import rede.AtorNetGames;
 import rede.Estado;
 
@@ -12,6 +13,13 @@ public class Jogo {
 
 	private Jogador jogador1;
 	private Jogador jogador2;
+	private AtorJogador atorJogador;
+	private boolean jogadorDaVezRendeuSe;
+	private boolean jogadorDaVezEhVencedor;
+
+	public Jogo(AtorJogador atorJogador) {	
+		this.atorJogador = atorJogador;
+	}
 	
 	public Jogador getJogador1() {
 		return jogador1;
@@ -28,8 +36,6 @@ public class Jogo {
 	public void setJogador2(Jogador jogador2) {
 		this.jogador2 = jogador2;
 	}
-
-	public Jogo() {	}
 
 	public void criarJogador(String nome, boolean jogadorLocal) {
 		if (jogador1 == null) {
@@ -48,16 +54,24 @@ public class Jogo {
 	}
 	
 	public Estado getEstado(){
-		Estado estado = new Estado(jogador1.getVila(), jogador2.getVila());
+		Estado estado = new Estado(jogador1.getVila(), jogador2.getVila(), jogadorDaVezRendeuSe, jogadorDaVezEhVencedor);
 		return estado;
 	}
 	
 	public boolean setEstado(Estado estado){
 		jogador1.setVila(estado.getVila1());
 		jogador2.setVila(estado.getVila2());
-		if(jogador1.isVencedor() || jogador2.isVencedor()){
+		
+		if(estado.isVencedor()){
+			atorJogador.avisarPerdedor();
 			return false;
 		}
+		
+		if(estado.isRendeuSe()){
+			atorJogador.avisarRendeuSe();
+			return false;
+		}
+
 		return true;
 	}
 	
@@ -133,8 +147,7 @@ public class Jogo {
 	}
 
 	public void renderSe() {
-		// TODO Auto-generated method stub
-		
+		this.jogadorDaVezRendeuSe = true;
 	}
 	
 	private int calcularDano(int quant){
@@ -148,7 +161,11 @@ public class Jogo {
 	}
 	
 	private void verificarVencedor(){
-		//TODO
+		Jogador jogador1 = this.getJogador1();
+		if(jogador1.getVila().getPontosDeVida() <= 0){
+			this.atorJogador.avisarVencedor();
+			this.jogadorDaVezEhVencedor = true;
+		}
 	}
 	
 	private boolean calcularFortalecerMuralhaPossivel(int quant){
