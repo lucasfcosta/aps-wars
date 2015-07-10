@@ -12,13 +12,13 @@ public class AtorJogador {
 
 	public AtorJogador() {
 		this.interfaceGrafica = new InterfaceGrafica(this);
-		this.getInterfaceGrafica().desabilitarBotoesJogada();
+		this.interfaceGrafica.desabilitarBotoesJogada();
 		this.showNameQuestion();
 		atorNetGames = new AtorNetGames(this);
 	}
 
 	private void showNameQuestion() {
-		this.nome = this.getInterfaceGrafica().showNameQuestion();
+		this.nome = this.interfaceGrafica.showNameQuestion();
 		if (this.nome.isEmpty()) {
 			this.nome = "Anônimo";
 		}
@@ -36,18 +36,18 @@ public class AtorJogador {
 		atorNetGames.iniciarPartidaRede();
 	}
 
-	public void iniciarPartidaResposta(boolean comecoFalando) {
+	public void iniciarPartidaResposta(boolean comecoJogando) {
 		interfaceGrafica.desabilitarIniciarPartida();
 		String nomeOutroJogador = atorNetGames.obterNomeAdversario();
 		jogo = new Jogo(this);
 
-		if (comecoFalando) {
+		if (comecoJogando) {
 			jogo.criarJogador(this.nome, true);
 			jogo.criarJogador(nomeOutroJogador, false);
-			this.getInterfaceGrafica().showDialog(
+			this.interfaceGrafica.showDialog(
 					"Jogo iniciado!\nVocê começa jogando.");
-			this.getInterfaceGrafica().atualizarNomeJogador1(this.nome, true);
-			this.getInterfaceGrafica().atualizarNomeJogador2(nomeOutroJogador,
+			this.interfaceGrafica.atualizarNomeJogador1(this.nome, true);
+			this.interfaceGrafica.atualizarNomeJogador2(nomeOutroJogador,
 					false);
 			interfaceGrafica.habilitarBotoesJogada();
 		} else {
@@ -55,9 +55,9 @@ public class AtorJogador {
 			jogo.criarJogador(this.nome, true);
 			interfaceGrafica
 					.showDialog("Jogo iniciado!\nAguarde a jogada de seu adversário.");
-			this.getInterfaceGrafica().atualizarNomeJogador1(nomeOutroJogador,
+			this.interfaceGrafica.atualizarNomeJogador1(nomeOutroJogador,
 					false);
-			this.getInterfaceGrafica().atualizarNomeJogador2(this.nome, true);
+			this.interfaceGrafica.atualizarNomeJogador2(this.nome, true);
 		}
 
 	}
@@ -131,7 +131,7 @@ public class AtorJogador {
 			jogo.renderSe();
 			this.enviarEstado();
 			interfaceGrafica.atualizarInterface(jogo.getEstado());
-			this.getInterfaceGrafica().showDialog("Você se rendeu.\nO jogo acabou.");
+			this.interfaceGrafica.showDialog("Você se rendeu.\nO jogo acabou.");
 		} else {
 			interfaceGrafica.showDialog("Não é sua vez.");
 		}
@@ -139,18 +139,18 @@ public class AtorJogador {
 
 	public void avisarVencedor() {
 		interfaceGrafica.desabilitarBotoesJogada();
-		this.getInterfaceGrafica().showDialog("Parabéns! Você é o vencedor! ;)\nO jogo acabou.");
+		this.interfaceGrafica.showDialog("Parabéns! Você é o vencedor! ;)\nO jogo acabou.");
 	}
 	
 	public void avisarRendeuSe() {
 		interfaceGrafica.desabilitarBotoesJogada();
-		this.getInterfaceGrafica().showDialog(
+		this.interfaceGrafica.showDialog(
 				"O outro jogador se rendeu.\nParabéns! Você é o vencedor! ;)\nO jogo acabou.");
 	}
 	
 	public void avisarPerdedor() {
 		interfaceGrafica.desabilitarBotoesJogada();
-		this.getInterfaceGrafica().showDialog(
+		this.interfaceGrafica.showDialog(
 				"Você perdeu :(\nO jogo acabou.");
 	}
 
