@@ -45,7 +45,7 @@ public class AtorNetGames implements OuvidorProxy {
 	@Override
 	public void iniciarNovaPartida(Integer posicao) {
 		minhaVez = posicao == 1 ? true : false;
-		atorJogador.iniciarPartidaRede(minhaVez);
+		atorJogador.iniciarPartidaResposta(minhaVez);
 	}
 
 	public void enviarEstado(Estado mensagem) {

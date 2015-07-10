@@ -32,11 +32,11 @@ public class AtorJogador {
 		atorNetGames.conectar(nome, "localhost");
 	}
 
-	public void iniciarPartida() {
+	public void iniciarPartidaPedido() {
 		atorNetGames.iniciarPartidaRede();
 	}
 
-	public void iniciarPartidaRede(boolean comecoFalando) {
+	public void iniciarPartidaResposta(boolean comecoFalando) {
 		interfaceGrafica.desabilitarIniciarPartida();
 		String nomeOutroJogador = atorNetGames.obterNomeAdversario();
 		jogo = new Jogo(this);
@@ -116,9 +116,9 @@ public class AtorJogador {
 		}
 	}
 
-	public void gerarRecursos() {
+	public void coletarRecursos() {
 		if (atorNetGames.ehMinhaVez()) {
-			jogo.gerarRecursos();
+			jogo.coletarRecursos();
 			this.enviarEstado();
 			interfaceGrafica.atualizarInterface(jogo.getEstado());
 		} else {
@@ -128,32 +128,30 @@ public class AtorJogador {
 
 	public void renderSe() {
 		if (atorNetGames.ehMinhaVez()) {
-			this.getInterfaceGrafica().showDialog(
-					"Você se rendeu.\nO jogo acabou.");
 			jogo.renderSe();
 			this.enviarEstado();
 			interfaceGrafica.atualizarInterface(jogo.getEstado());
+			this.getInterfaceGrafica().showDialog("Você se rendeu.\nO jogo acabou.");
 		} else {
 			interfaceGrafica.showDialog("Não é sua vez.");
 		}
 	}
 
 	public void avisarVencedor() {
-		this.getInterfaceGrafica().showDialog(
-				"Parabéns! Você é o vencedor!\nO jogo acabou.");
 		interfaceGrafica.desabilitarBotoesJogada();
+		this.getInterfaceGrafica().showDialog("Parabéns! Você é o vencedor! ;)\nO jogo acabou.");
 	}
 	
 	public void avisarRendeuSe() {
-		this.getInterfaceGrafica().showDialog(
-				"O outro jogador se rendeu.\nParabéns! Você é o vencedor!\nO jogo acabou.");
 		interfaceGrafica.desabilitarBotoesJogada();
+		this.getInterfaceGrafica().showDialog(
+				"O outro jogador se rendeu.\nParabéns! Você é o vencedor! ;)\nO jogo acabou.");
 	}
 	
 	public void avisarPerdedor() {
+		interfaceGrafica.desabilitarBotoesJogada();
 		this.getInterfaceGrafica().showDialog(
 				"Você perdeu :(\nO jogo acabou.");
-		interfaceGrafica.desabilitarBotoesJogada();
 	}
 
 	public void desconectar() {

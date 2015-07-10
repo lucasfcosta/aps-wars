@@ -2,6 +2,10 @@
 <ProjectTreeState projectID="52z..TKGAqACJAOG" projectPath="D:\Cliente\Documentos\GitHub\aps-wars\DOCS\Modelagem Tribal Wars\Tribal Wars.vpp">
 	<TreeState name="ModelRepository" viewX="0" viewY="0"/>
 	<TreeState name="DiagramNavigator" viewX="0" viewY="0"/>
-	<TreeState name="ClassBrowser" viewX="0" viewY="0"/>
+	<TreeState name="ClassBrowser" viewX="0" viewY="0">
+		<ExpandedPath>ClassBrowser</ExpandedPath>
+		<ExpandedPath>ClassBrowser,Instant Reverse</ExpandedPath>
+		<SelectedPath>ClassBrowser,Instant Reverse,D:\Cliente\Documentos\GitHub\aps-wars\IMPL\Client\src</SelectedPath>
+	</TreeState>
 	<TreeState name="LogicalView" viewX="0" viewY="0"/>
 </ProjectTreeState>

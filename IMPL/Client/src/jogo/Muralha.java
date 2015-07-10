@@ -12,6 +12,10 @@ public class Muralha implements Jogada {
 
 	public void decrementarPontosDeVida(int pontosDeVida) {
 		this.pontosDeVida -= pontosDeVida;
+		if(this.pontosDeVida <= 0){
+			this.pontosDeVida = 0;
+			this.delayReconstrucao = 4;
+		}
 	}
 	
 	public void incrementarPontosDeVida(int pontosDeVida) {
@@ -22,8 +26,10 @@ public class Muralha implements Jogada {
 		return delayReconstrucao;
 	}
 
-	public void setDelayReconstrucao(int delayReconstrucao) {
-		this.delayReconstrucao = delayReconstrucao;
+	public void decrementarDelay() {
+		if(this.delayReconstrucao > 0){
+			this.delayReconstrucao -= 1;
+		}
 	}
 
 }

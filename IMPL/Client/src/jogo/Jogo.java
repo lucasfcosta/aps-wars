@@ -1,5 +1,6 @@
 package jogo;
 
+import java.text.DecimalFormat;
 import java.util.Random;
 
 import org.apache.log4j.chainsaw.Main;
@@ -16,6 +17,7 @@ public class Jogo {
 	private AtorJogador atorJogador;
 	private boolean jogadorDaVezRendeuSe;
 	private boolean jogadorDaVezEhVencedor;
+	private String ultimaAcao;
 
 	public Jogo(AtorJogador atorJogador) {	
 		this.atorJogador = atorJogador;
@@ -54,13 +56,18 @@ public class Jogo {
 	}
 	
 	public Estado getEstado(){
-		Estado estado = new Estado(jogador1.getVila(), jogador2.getVila(), jogadorDaVezRendeuSe, jogadorDaVezEhVencedor);
+		Muralha muralhaLocal = this.getJogadorLocal().getVila().getMuralha();
+		muralhaLocal.decrementarDelay();
+		Estado estado = new Estado(jogador1.getVila(), jogador2.getVila(), jogadorDaVezRendeuSe, jogadorDaVezEhVencedor, ultimaAcao);
 		return estado;
 	}
 	
 	public boolean setEstado(Estado estado){
 		jogador1.setVila(estado.getVila1());
 		jogador2.setVila(estado.getVila2());
+		
+		Muralha muralhaLocal = this.getJogadorLocal().getVila().getMuralha();
+		muralhaLocal.decrementarDelay();
 		
 		if(estado.isVencedor()){
 			atorJogador.avisarPerdedor();
@@ -96,6 +103,8 @@ public class Jogo {
 				vilaAdversaria.decrementarPontosDeVida(dano);
 			}
 			vilaLocal.decrementarSoldados(quantSoldados);
+			String tipoAtaque = this.getStringTipoAtaque(quantSoldados, dano);
+			this.setUltimaAcao("$1 atacou $2 e causou "+dano+" de dano.\nO ataque foi "+tipoAtaque+".");
 			this.verificarVencedor();
 			return true;
 		}
@@ -111,16 +120,18 @@ public class Jogo {
 			if(tropasPossiveis > 0){
 				vilaLocal.incrementarSoldados(tropasPossiveis);
 				vilaLocal.decrementarComida(comidaDisponivel);
+				this.setUltimaAcao("$1 construiu "+tropasPossiveis+" tropas.");
 				return true;
 			}
 		}
+		
 		
 		return false;
 	}
 
 	public boolean fortalecerMuralha() {
-		int regenera = 2;
-		int custa = 6;
+		int regenera = 25;
+		int custa = 15;
 		Vila vila = getJogadorLocal().getVila();
 		Muralha muralha = vila.getMuralha();
 		int delay = muralha.getDelayReconstrucao();
@@ -128,21 +139,23 @@ public class Jogo {
 			if(this.calcularFortalecerMuralhaPossivel(vila.getMadeira())){
 				muralha.incrementarPontosDeVida(regenera);
 				vila.decrementarMadeira(custa);
+				this.setUltimaAcao("$1 fortaleceu sua muralha em "+regenera+" pontos.");
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public boolean gerarRecursos() {
+	public boolean coletarRecursos() {
 		Vila vila = getJogadorLocal().getVila();
-		int quantMadeira = this.gerarDistribuicao(1, 10);
+		int quantMadeira = this.gerarDistribuicaoInteiro(1, 10);
 		int quantComida = 10-quantMadeira;
 		vila.incrementarMadeira(quantMadeira);
 		if(quantComida > 0){
 			vila.incrementarComida(quantComida);
 		}
 		
+		this.setUltimaAcao("$1 gerou "+quantMadeira+" unidades de madeira e "+quantComida+" unidades de comida.");
 		return true;
 	}
 
@@ -151,8 +164,11 @@ public class Jogo {
 	}
 	
 	private int calcularDano(int quant){
-		int mult = this.gerarDistribuicao(1,2);
-		return quant*mult;
+		float mult = this.gerarDistribuicaoFloat(0.5f,1.5f);
+		float calc = mult*quant;
+		DecimalFormat df = new DecimalFormat("#");
+		int ret = Integer.parseInt(df.format(calc));
+		return ret;
 	}
 	
 	private int calcularTropasPossiveis(int quant){
@@ -161,20 +177,43 @@ public class Jogo {
 	}
 	
 	private void verificarVencedor(){
-		Jogador jogador1 = this.getJogador1();
-		if(jogador1.getVila().getPontosDeVida() <= 0){
+		Jogador jogadorRemoto = this.getJogadorRemoto();
+		if(jogadorRemoto.getVila().getPontosDeVida() <= 0){
 			this.atorJogador.avisarVencedor();
 			this.jogadorDaVezEhVencedor = true;
 		}
 	}
 	
 	private boolean calcularFortalecerMuralhaPossivel(int quant){
-		int custo = 1;
+		int custo = 15;
 		return quant >= custo;
 	}
 	
-	private int gerarDistribuicao(int min, int max){
+	private int gerarDistribuicaoInteiro(int min, int max){
 		return new Random().nextInt(max - min + 1) + min;
+	}
+	
+	private float gerarDistribuicaoFloat(float min, float max){
+		return new Random().nextFloat() * (max - min) + min;
+	}
+	
+	public String getUltimaAcao() {
+		return ultimaAcao;
+	}
+
+	public void setUltimaAcao(String ultimaAcao) {
+		ultimaAcao = ultimaAcao.replace("$1", this.getJogadorLocal().getNome());
+		ultimaAcao = ultimaAcao.replace("$2", this.getJogadorRemoto().getNome());
+		this.ultimaAcao = "<html>"+ultimaAcao+"</html>";
+	}
+	
+	public String getStringTipoAtaque(int quantSoldados, int dano){
+		if(quantSoldados > dano){
+			return "ineficiente";
+		} else if(quantSoldados < dano){
+			return "super-eficiente";
+		}
 		
+		return "eficiente";
 	}
 }
