@@ -10,6 +10,7 @@ public class Estado implements Jogada {
 	private boolean rendeuSe;
 	private boolean vencedor;
 	private String ultimaAcao;
+	private boolean novoJogo;
 	
 	public Estado(Vila vila1, Vila vila2, boolean rendeuSe, boolean vencedor, String ultimaAcao) {
 		super();
@@ -58,6 +59,14 @@ public class Estado implements Jogada {
 
 	public void setUltimaAcao(String ultimaAcao) {
 		this.ultimaAcao = ultimaAcao;
+	}
+
+	public boolean isNovoJogo() {
+		return novoJogo;
+	}
+
+	public void setNovoJogo(boolean novoJogo) {
+		this.novoJogo = novoJogo;
 	}
 
 }

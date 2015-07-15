@@ -5,6 +5,11 @@ import br.ufsc.inf.leobr.cliente.Jogada;
 public class Muralha implements Jogada {
 	protected int pontosDeVida;
 	protected int delayReconstrucao;
+	
+	public Muralha() {
+		this.pontosDeVida = 0;
+		this.delayReconstrucao = 0;
+	}
 
 	public int getPontosDeVida() {
 		return pontosDeVida;

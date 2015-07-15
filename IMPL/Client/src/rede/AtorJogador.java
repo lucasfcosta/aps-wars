@@ -40,7 +40,7 @@ public class AtorJogador {
 		interfaceGrafica.desabilitarIniciarPartida();
 		String nomeOutroJogador = atorNetGames.obterNomeAdversario();
 		jogo = new Jogo(this);
-
+	
 		if (comecoJogando) {
 			jogo.criarJogador(this.nome, true);
 			jogo.criarJogador(nomeOutroJogador, false);
@@ -59,13 +59,14 @@ public class AtorJogador {
 					false);
 			this.interfaceGrafica.atualizarNomeJogador2(this.nome, true);
 		}
-
+		this.interfaceGrafica.atualizarInterface(jogo.getEstado());
 	}
 
 	public void receberEstado(Estado estado) {
 		interfaceGrafica.atualizarInterface(estado);
 		if (!jogo.setEstado(estado)) {
 			interfaceGrafica.desabilitarBotoesJogada();
+			interfaceGrafica.habilitarIniciarPartida();
 		} else {
 			interfaceGrafica.habilitarBotoesJogada();
 		}
@@ -132,6 +133,7 @@ public class AtorJogador {
 			this.enviarEstado();
 			interfaceGrafica.atualizarInterface(jogo.getEstado());
 			this.interfaceGrafica.showDialog("Você se rendeu.\nO jogo acabou.");
+			interfaceGrafica.habilitarIniciarPartida();
 		} else {
 			interfaceGrafica.showDialog("Não é sua vez.");
 		}
@@ -139,6 +141,7 @@ public class AtorJogador {
 
 	public void avisarVencedor() {
 		interfaceGrafica.desabilitarBotoesJogada();
+		interfaceGrafica.habilitarIniciarPartida();
 		this.interfaceGrafica.showDialog("Parabéns! Você é o vencedor! ;)\nO jogo acabou.");
 	}
 	

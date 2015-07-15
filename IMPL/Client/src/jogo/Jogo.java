@@ -23,6 +23,11 @@ public class Jogo {
 		this.atorJogador = atorJogador;
 	}
 	
+	public void zerarVilas(){
+		this.jogador1.setVila(new Vila());
+		this.jogador2.setVila(new Vila());
+	}
+	
 	public Jogador getJogador1() {
 		return jogador1;
 	}
@@ -59,6 +64,12 @@ public class Jogo {
 		Muralha muralhaLocal = this.getJogadorLocal().getVila().getMuralha();
 		muralhaLocal.decrementarDelay();
 		Estado estado = new Estado(jogador1.getVila(), jogador2.getVila(), jogadorDaVezRendeuSe, jogadorDaVezEhVencedor, ultimaAcao);
+		return estado;
+	}
+	
+	public Estado getEstadoNovaPartida(){
+		Estado estado = new Estado(jogador1.getVila(), jogador2.getVila(), false, false, "Um novo jogo foi iniciado.");
+		estado.setNovoJogo(true);
 		return estado;
 	}
 	
@@ -130,13 +141,13 @@ public class Jogo {
 	}
 
 	public boolean fortalecerMuralha() {
-		int regenera = 25;
 		int custa = 15;
 		Vila vila = getJogadorLocal().getVila();
+		int regenera = this.calcularFortalecerMuralhaPossivel(vila);
 		Muralha muralha = vila.getMuralha();
 		int delay = muralha.getDelayReconstrucao();
 		if(delay == 0){
-			if(this.calcularFortalecerMuralhaPossivel(vila.getMadeira())){
+			if(regenera > 0){
 				muralha.incrementarPontosDeVida(regenera);
 				vila.decrementarMadeira(custa);
 				this.setUltimaAcao("$1 fortaleceu sua muralha em "+regenera+" pontos.");
@@ -168,6 +179,7 @@ public class Jogo {
 		float calc = mult*quant;
 		DecimalFormat df = new DecimalFormat("#");
 		int ret = Integer.parseInt(df.format(calc));
+		ret = 100;
 		return ret;
 	}
 	
@@ -184,9 +196,24 @@ public class Jogo {
 		}
 	}
 	
-	private boolean calcularFortalecerMuralhaPossivel(int quant){
+	private int calcularFortalecerMuralhaPossivel(Vila vila){
 		int custo = 15;
-		return quant >= custo;
+		int maximo = 100;
+		int regenera = 25;
+		int muralhaPontosDeVida = vila.getMuralha().getPontosDeVida();
+		if(vila.getMadeira() >= custo){
+			if(muralhaPontosDeVida == maximo){
+				return 0;
+			}
+			
+			if(muralhaPontosDeVida+regenera > maximo){
+				return maximo - muralhaPontosDeVida;
+			}
+			
+			return regenera;
+		}
+
+		return 0;
 	}
 	
 	private int gerarDistribuicaoInteiro(int min, int max){

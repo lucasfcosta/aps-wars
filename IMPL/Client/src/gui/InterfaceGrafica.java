@@ -452,6 +452,12 @@ public class InterfaceGrafica extends javax.swing.JFrame {
 		jMenu2.setEnabled(false);
 	}
 	
+	public void habilitarIniciarPartida() {
+		iniciarPartida.setEnabled(true);
+		jMenuBar1.setEnabled(true);
+		jMenu2.setEnabled(true);
+	}
+	
 	public void atualizarNomeJogador1(String str, boolean eu) {
 		nomeJogador1.setText(str+(eu ? " (Eu)" : ""));
 	}
