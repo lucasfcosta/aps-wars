@@ -1,0 +1,59 @@
+﻿|----------------------------------------------------------------|
+Tribal Wars v.1.0  - Release date: 15/07/2015
+Release Notes
+
+Henrique Prandi,
+Lucas Fernandes da Costa
+|----------------------------------------------------------------|
+
+Sumário
+
+1. Requisitos do sistema
+2. Instalação
+3. Versão atual e seus aspectos
+4. Restrições
+5. Melhorias para próximas versões
+
+|----------------------------------------------------------------|
+1. Requisitos do sistema
+|----------------------------------------------------------------|
+
+Para executar o jogo é necessário:
+- Java Runtime Environment (JRE) instalado na máquina, na versão 7 ou superior
+- Servidor NetGames NRT rodando na máquina (servidor em localhost).
+
+|----------------------------------------------------------------|
+2. Instalação e execução
+|----------------------------------------------------------------|
+
+- Não é necessário instalar o jogo para que ele seja executado.
+- Para iniciar o jogo:
+	Opção 1. Abrindo diretamente o arquivo "Tribal_Wars.jar".
+	(Caso nenhum programa padrão esteja definido para abrir o arquivo, selecionar "Java platform SE binary")
+
+	Opção 2. Através da linha de comando:
+	Abra a linha de comando, vá até o diretório onde está localizado o arquivo "Tribal_Wars.jar" e execute o comando:
+	java -jar Tribal_Wars.jar
+
+|----------------------------------------------------------------|
+3. Versão atual e seus aspectos
+|----------------------------------------------------------------|
+
+- O jogo encontra-se na sua primeira versão, com uma interface simples, amigável e funcional. 
+
+- -----O usuário ao iniciar uma partida consegue entender quais são os lances possíveis de realizar através dos avisos que a interface lhe envia.
+- O usuário nesta primeira versão conseguirá realizar partidas desafiadores e divertidas com outros usuários.
+----- Ao obter sucesso em conectar e escolher uma das opções da pergunta "Deseja iniciar partida?" duas mensagens são exibidas juntas: "Exito em efetuar conexão" e "Cancelado iniciar partida" ou "A partida nao pode ser iniciada.".
+
+|----------------------------------------------------------------|
+4. Restrições
+|----------------------------------------------------------------|
+
+
+
+|----------------------------------------------------------------|
+5. Melhorias para próximas versões
+|----------------------------------------------------------------|
+
+- Implementar um placar que mostre quantas partidas cada jogador já ganhou.
+	
