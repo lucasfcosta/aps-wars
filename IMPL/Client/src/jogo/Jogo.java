@@ -173,7 +173,6 @@ public class Jogo {
 		float calc = mult*quant;
 		DecimalFormat df = new DecimalFormat("#");
 		int ret = Integer.parseInt(df.format(calc));
-		ret = 100;
 		return ret;
 	}
 	
