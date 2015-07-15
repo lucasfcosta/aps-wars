@@ -67,12 +67,6 @@ public class Jogo {
 		return estado;
 	}
 	
-	public Estado getEstadoNovaPartida(){
-		Estado estado = new Estado(jogador1.getVila(), jogador2.getVila(), false, false, "Um novo jogo foi iniciado.");
-		estado.setNovoJogo(true);
-		return estado;
-	}
-	
 	public boolean setEstado(Estado estado){
 		jogador1.setVila(estado.getVila1());
 		jogador2.setVila(estado.getVila2());

@@ -216,7 +216,7 @@ public class InterfaceGrafica extends javax.swing.JFrame {
         iniciarPartida.setText("Iniciar Partida");
         iniciarPartida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                iniciarPartidaActionPerformed(evt);
             }
         });
         jMenu2.add(iniciarPartida);
@@ -381,7 +381,7 @@ public class InterfaceGrafica extends javax.swing.JFrame {
 		atorJogador.atacar();
 	}
 
-	private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {
+	private void iniciarPartidaActionPerformed(java.awt.event.ActionEvent evt) {
 		atorJogador.iniciarPartidaPedido();
 	}
 	
