@@ -404,7 +404,7 @@ public class InterfaceGrafica extends javax.swing.JFrame {
 	}
 
 	public String showNameQuestion() {
-		return JOptionPane.showInputDialog("Escolha seu nome:");
+		return JOptionPane.showInputDialog(this, "Escolha seu nome:");
 	}
 
 	public void atualizarInterface(Estado estado) {
