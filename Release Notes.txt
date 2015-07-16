@@ -27,7 +27,7 @@ O objetivo do jogo é reduzir os pontos de vida da tribo adversária para 0 ou f
 
 A cada turno o jogador pode escolher realizar uma dentre as seguintes ações:
 	
-	Render-se
+    Render-se
     Coletar Recursos
     Fortalecer Muralha (necessita de 15 madeiras para fortalecer a muralha em 25 pontos)
     Gerar Tropas (necessita de 1 carne para cada 1 tropa)
