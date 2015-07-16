@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.Dimension;
 
+import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 
 import jogo.Vila;
@@ -22,11 +23,13 @@ public class InterfaceGrafica extends javax.swing.JFrame {
 	private javax.swing.JLabel jLabel5;
 	private javax.swing.JLabel jLabel6;
 	private javax.swing.JLabel jLabel7;
-	private javax.swing.JLabel jLabel8;
 	private javax.swing.JMenu jMenu2;
 	private javax.swing.JMenuBar jMenuBar1;
 	private javax.swing.JMenuItem iniciarPartida;
 	private javax.swing.JSeparator jSeparator1;
+	
+	private javax.swing.JMenu jMenu3;
+	private javax.swing.JMenuItem sair;
 	private javax.swing.JLabel madeiraJogador1;
 	private javax.swing.JLabel madeiraJogador2;
 	private javax.swing.JLabel nomeJogador1;
@@ -72,7 +75,9 @@ public class InterfaceGrafica extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
         iniciarPartida = new javax.swing.JMenuItem();
+        sair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("APS Wars");
@@ -222,6 +227,17 @@ public class InterfaceGrafica extends javax.swing.JFrame {
         jMenu2.add(iniciarPartida);
 
         jMenuBar1.add(jMenu2);
+        
+        jMenu3.setText("Sair");
+        sair.setText("Sair do jogo");
+        sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	exitButtonClicked();
+            }
+        });
+        jMenu3.add(sair);
+
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -353,7 +369,7 @@ public class InterfaceGrafica extends javax.swing.JFrame {
 		this.addWindowListener(new java.awt.event.WindowAdapter() {
 		    @Override
 		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-		    	exitButtonClicked(windowEvent);
+		    	exitButtonClicked();
 		    }
 		});
 	}
@@ -385,7 +401,7 @@ public class InterfaceGrafica extends javax.swing.JFrame {
 		atorJogador.iniciarPartidaPedido();
 	}
 	
-	private void exitButtonClicked(java.awt.event.WindowEvent windowEvent) {
+	private void exitButtonClicked() {
 		int result = JOptionPane.showConfirmDialog(this, "Você tem certez de que deseja fechar?", "Fechar jogo", JOptionPane.YES_NO_OPTION);
 		if (result == JOptionPane.YES_OPTION) {
 			atorJogador.desconectar();

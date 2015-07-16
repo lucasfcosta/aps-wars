@@ -4,7 +4,6 @@
 	<TreeState name="DiagramNavigator" viewX="0" viewY="0"/>
 	<TreeState name="ClassBrowser" viewX="0" viewY="0">
 		<ExpandedPath>ClassBrowser</ExpandedPath>
-		<ExpandedPath>ClassBrowser,Instant Reverse</ExpandedPath>
 	</TreeState>
 	<TreeState name="LogicalView" viewX="0" viewY="0"/>
 </ProjectTreeState>
