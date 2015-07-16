@@ -1,59 +1,48 @@
-﻿|----------------------------------------------------------------|
-Tribal Wars v.1.0  - Release date: 15/07/2015
-Release Notes
+=======================================================================================
 
-Henrique Prandi,
+TRIBAL WARS v.1.0
+
+Henrique Prandi
 Lucas Fernandes da Costa
-|----------------------------------------------------------------|
 
-Sumário
+=======================================================================================
 
-1. Requisitos do sistema
-2. Instalação
-3. Versão atual e seus aspectos
-4. Restrições
-5. Melhorias para próximas versões
+Instruções de Instalação:
 
-|----------------------------------------------------------------|
-1. Requisitos do sistema
-|----------------------------------------------------------------|
+- Extraia o arquivo .zip para qualquer diretório
+- Rode o servidor netgames na pasta IMPL/Server/servidor.jar em localhost (porta default do NetGames) navegando até a pasta IMPL/Server e executando o comando "java -jar servidor.jar"
+- Execute o arquivo TribalWars.jar, que se encontra dentro da pasta IMPL/Client/.
+- Clique em iniciar partida, caso houver outro cliente disponível para jogar a partida será iniciada
 
-Para executar o jogo é necessário:
-- Java Runtime Environment (JRE) instalado na máquina, na versão 7 ou superior
-- Servidor NetGames NRT rodando na máquina (servidor em localhost).
+=======================================================================================
 
-|----------------------------------------------------------------|
-2. Instalação e execução
-|----------------------------------------------------------------|
+Conceito Geral
 
-- Não é necessário instalar o jogo para que ele seja executado.
-- Para iniciar o jogo:
-	Opção 1. Abrindo diretamente o arquivo "Tribal_Wars.jar".
-	(Caso nenhum programa padrão esteja definido para abrir o arquivo, selecionar "Java platform SE binary")
-
-	Opção 2. Através da linha de comando:
-	Abra a linha de comando, vá até o diretório onde está localizado o arquivo "Tribal_Wars.jar" e execute o comando:
-	java -jar Tribal_Wars.jar
-
-|----------------------------------------------------------------|
-3. Versão atual e seus aspectos
-|----------------------------------------------------------------|
-
-- O jogo encontra-se na sua primeira versão, com uma interface simples, amigável e funcional. 
-
-- -----O usuário ao iniciar uma partida consegue entender quais são os lances possíveis de realizar através dos avisos que a interface lhe envia.
-- O usuário nesta primeira versão conseguirá realizar partidas desafiadores e divertidas com outros usuários.
------ Ao obter sucesso em conectar e escolher uma das opções da pergunta "Deseja iniciar partida?" duas mensagens são exibidas juntas: "Exito em efetuar conexão" e "Cancelado iniciar partida" ou "A partida nao pode ser iniciada.".
-
-|----------------------------------------------------------------|
-4. Restrições
-|----------------------------------------------------------------|
+Duas tribos estão em guerra e precisam derrotar seus inimigos para poderem se expandir. Cada jogador controla uma das tribos podendo coletar recursos, gerar tropas, fortalecer sua muralha, render-se ou atacar. A tribo que aniquilar seu oponente primeiro, reduzindo os pontos de vida da vila adversária para zero, é vencedora.
 
 
+=======================================================================================
 
-|----------------------------------------------------------------|
-5. Melhorias para próximas versões
-|----------------------------------------------------------------|
+O objetivo do jogo é reduzir os pontos de vida da tribo adversária para 0 ou fazê-lo render-se.
 
-- Implementar um placar que mostre quantas partidas cada jogador já ganhou.
+A cada turno o jogador pode escolher realizar uma dentre as seguintes ações:
 	
+	Render-se
+    Coletar Recursos
+    Fortalecer Muralha (necessita de 15 madeiras para fortalecer a muralha em 25 pontos)
+    Gerar Tropas (necessita de 1 carne para cada 1 tropa)
+    Atacar (caso possua tropas)
+
+Existem dois tipos de recursos: comida e madeira, que podem ser obtidos através da ação coleta de recursos. A coleta de recursos irá gerar uma distribuição aleatória de quantidade de comida e madeira, essa distribuição será feita a partir de um total de 10 unidades, assim, cabe ao jogador tomar as melhores decisões baseado em sua atual situação de recursos.
+
+A muralha serve como uma espécie de escudo, ela também possui pontos de vida. Enquanto os pontos de vida da muralha forem superiores à 0, ela irá tomar todo o dano proveniente de ataques. A única maneira de incrementar a quantidade de pontos de vida da muralha é realizando a ação de fortalecê-la. Após a muralha ser totalmente destruída, o jogador precisa esperar alguns turnos para poder reconstruí-la.
+
+Para gerar tropas serão consumidas unidades do recurso comida, já para fortalecer a muralha serão consumidas unidades do recurso madeira.
+
+Para poder atacar o jogador atacante precisa possuir tropas, essas tropas serão enviadas ao combate para lutar até a morte e causar uma quantidade de dano na muralha ou na vila (caso a muralha esteja destruída) que varia de acordo com a força e a quantidade dos soldados, além, é claro, de um pouco do fator sorte.
+
+=======================================================================================
+
+Melhorias para as próximas versões
+
+-Melhoria na experiência do usuário, acrescentando mais feedback e apelos visuais
