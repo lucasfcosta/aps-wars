@@ -1,7 +1,8 @@
 # ENTREGA FINAL:
 O arquivo da entrega final está disponivel no link:
 https://drive.google.com/file/d/0B05V8IHirEP7NzlXR1gxbmNyUDQ/view?usp=sharing
-Diversar modificações foram feitas (e estão dispnivel neste arquivo).
+
+Diversas modificações foram feitas (e estão dispnivel neste arquivo).
 Estas modificações não foram comitadas, ou seja, este repositório esta DESATUALIZADO.
 Para ultilizar a ultima versão do jogo, baixar o arquivo do link acima.
 
