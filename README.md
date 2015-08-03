@@ -2,8 +2,8 @@
 O arquivo da entrega final está disponivel no link:
 https://drive.google.com/file/d/0B05V8IHirEP7NzlXR1gxbmNyUDQ/view?usp=sharing
 
-Diversas modificações foram feitas (e estão dispnivel neste arquivo).
-Estas modificações não foram comitadas, ou seja, este repositório esta DESATUALIZADO.
+Diversas modificações foram feitas (e estão dispniveis neste arquivo).
+Estas modificações não foram comitadas, ou seja, este repositório está DESATUALIZADO.
 Para ultilizar a ultima versão do jogo, baixar o arquivo do link acima.
 
 # Aps-Wars
